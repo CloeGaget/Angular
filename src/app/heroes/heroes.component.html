@@ -1,0 +1,8 @@
+<h2>Nos développeurs : </h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span><strong> {{hero.name}} </strong></span>
+    </a>
+  </li>
+</ul><br>

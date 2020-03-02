@@ -1,0 +1,8 @@
+<h2> Les armes disponibles : </h2>
+<ul class="weapons">
+  <li *ngFor="let weapon of weapons">
+    <a routerLink="/detailWeapon/{{weapon.id}}">
+      <span><strong> {{weapon.name}} </strong></span>
+    </a>
+  </li>
+</ul><br>
