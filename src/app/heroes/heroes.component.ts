@@ -10,6 +10,7 @@ import {HeroService} from '../services/hero.service';
 
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+  filterType: boolean;
 
   constructor(private heroService: HeroService) { }
 
@@ -23,9 +24,19 @@ export class HeroesComponent implements OnInit {
   }
 
   filterbyName() {
-    this.heroes.sort((a, b) => a.name.localeCompare(b.name));
+    if (this.filterType) {
+      this.heroes.sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+      this.heroes.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    this.filterType = !this.filterType;
   }
   filterbyProperty(property: string) {
-    this.heroes.sort((a, b) => { return b[property] - a[property] });
+    if (this.filterType) {
+      this.heroes.sort((a, b) => {return a[property] - b[property]});
+    } else {
+      this.heroes.sort((a, b) => {return b[property] - a[property]});
+    }
+    this.filterType = !this.filterType;
   }
 }

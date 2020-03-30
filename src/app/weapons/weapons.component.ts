@@ -10,6 +10,7 @@ import {WeaponService} from '../services/weapon.service';
 
 export class WeaponsComponent implements OnInit {
   weapons: Weapon[];
+  filterType: boolean;
 
   constructor(private weaponService: WeaponService) { }
 
@@ -23,10 +24,19 @@ export class WeaponsComponent implements OnInit {
   }
 
   filterbyName() {
-    this.weapons.sort((a, b) => a.name.localeCompare(b.name));
+    if (this.filterType) {
+      this.weapons.sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+      this.weapons.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    this.filterType = !this.filterType;
   }
-
   filterbyProperty(property: string) {
-    this.weapons.sort((a, b) => { return b[property] - a[property] });
+    if (this.filterType) {
+      this.weapons.sort((a, b) => {return a[property] - b[property]});
+    } else {
+      this.weapons.sort((a, b) => {return b[property] - a[property]});
+    }
+    this.filterType = !this.filterType;
   }
 }
