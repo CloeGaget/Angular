@@ -7,5 +7,5 @@ export class Hero extends Serializable  {
   dodge: number;
   dmg: number;
   hp: number;
-  weapon: string;
+  weaponId: string;
 }

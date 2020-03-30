@@ -1,0 +1,25 @@
+<div *ngIf="weapon">
+  {{ validation(weapon.attack, weapon.dodge, weapon.dmg, weapon.hp) }}
+  <h2>Nouvelle Arme :</h2>
+  <div>
+    <label>Nom :
+      <input [(ngModel)]="weapon.name" placeholder="nom"/>
+    </label><br><br>
+    <label>Répartition des points. </label>
+    <label>Il vous reste {{ getPointsRestants() }} point(s) à placer.</label>
+    <label>Attaque :
+      <input id="atq" [max]="(weapon.attack+getPointsRestants())" [style.borderColor]="validateNumber(weapon.attack)" [(ngModel)]="weapon.attack" type="number" min="-5" max="5" required/><br>
+    </label>
+    <label>Esquive :
+      <input id="dodge" [max]="(weapon.dodge+getPointsRestants())" [style.borderColor]="validateNumber(weapon.dodge)" [(ngModel)]="weapon.dodge" placeholder="1" type="number" min="-5" max="5" required/><br>
+    </label>
+    <label>Dégats :
+      <input id="dmg" [max]="(weapon.dmg+getPointsRestants())" [style.borderColor]="validateNumber(weapon.dmg)" [(ngModel)]="weapon.dmg" placeholder="1" type="number" min="-5" max="5" required/><br>
+    </label>
+    <label>Points de Vie :
+      <input id="hp" [max]="(weapon.hp+getPointsRestants())" [style.borderColor]="validateNumber(weapon.hp)" [(ngModel)]="weapon.hp" placeholder="1" type="number" min="-5" max="5" required/><br>
+    </label>
+    <button id="btSave" (click)="save()">Valider</button>
+  </div>
+</div><br>
+<button (click)="goBack()">Retour</button>

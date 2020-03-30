@@ -7,6 +7,7 @@ import {AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFirestoreCollection } from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
+import {Weapon} from "../data/weapon";
 
 @Injectable({
   providedIn: 'root',

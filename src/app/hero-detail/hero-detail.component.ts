@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { HeroService } from '../services/hero.service';
 import {Weapon} from "../data/weapon";
 import {WeaponService} from "../services/weapon.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-hero-detail',
@@ -15,7 +16,8 @@ import {WeaponService} from "../services/weapon.service";
 export class HeroDetailComponent implements OnInit {
 
   hero: Hero;
-  weapons: Weapon;
+  weapons: Weapon[];
+  weapon: Weapon;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,12 +28,17 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.initHero();
+    this.getWeapons();
   }
 
   initHero(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => {
+        this.hero = hero;
+        this.weaponService.getWeapon(this.hero.weaponId)
+          .subscribe(weapon => this.weapon = weapon);
+      });
   }
 
   goBack(): void {
@@ -39,7 +46,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   validation(atq, dodge, dmg, hp): void {
-    if ((atq + dodge + dmg + hp) === 40) {
+    if ((atq + dodge + dmg + hp) <= 40) {
       (document.getElementById('btSave') as HTMLInputElement).disabled = false;
     } else {
       (document.getElementById('btSave') as HTMLInputElement).disabled = true;
@@ -48,7 +55,7 @@ export class HeroDetailComponent implements OnInit {
 
   validateNumber(element): string {
     if (element >= 1 && (element <= 37)) {
-      if (this.getPointsRestants() === 0) {
+      if (this.getPointsRestants() >= 0) {
         return 'green';
       } else {
         return 'red';
@@ -64,10 +71,16 @@ export class HeroDetailComponent implements OnInit {
 
   save() {
     const total = this.getPointsRestants();
-    if (total === 0) {
+    if (total >= 0) {
       this.heroService.updateHero(this.hero);
       this.location.back();
     }
+
+  }
+
+  getWeapons(): void {
+    this.weaponService.getWeapons()
+      .subscribe(weapons => this.weapons = weapons);
   }
 
 }

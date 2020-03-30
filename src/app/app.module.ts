@@ -16,6 +16,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { WeaponsComponent } from './weapons/weapons.component';
 import { WeaponDetailComponent } from './weapon-detail/weapon-detail.component';
+import { NewHeroComponent } from './new-hero/new-hero.component';
+import { NewWeaponComponent } from './new-weapon/new-weapon.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { WeaponDetailComponent } from './weapon-detail/weapon-detail.component';
     MessagesComponent,
     DashboardComponent,
     WeaponsComponent,
-    WeaponDetailComponent
+    WeaponDetailComponent,
+    NewHeroComponent,
+    NewWeaponComponent
   ],
   imports: [
     BrowserModule,
