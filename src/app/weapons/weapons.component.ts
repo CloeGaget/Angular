@@ -22,4 +22,11 @@ export class WeaponsComponent implements OnInit {
       .subscribe(weapons => this.weapons = weapons);
   }
 
+  filterbyName() {
+    this.weapons.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  filterbyProperty(property: string) {
+    this.weapons.sort((a, b) => { return b[property] - a[property] });
+  }
 }

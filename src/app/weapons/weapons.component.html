@@ -1,4 +1,14 @@
 <h2> Les armes disponibles : </h2>
+<div class="filters">
+  <p> Filtrer par :</p>
+  <ul>
+    <li><button (click)="filterbyName()">Par nom</button></li>
+    <li><button (click)="filterbyProperty('attack')">Par Attaque</button></li>
+    <li><button (click)="filterbyProperty('dodge')">Par Esquive</button></li>
+    <li><button (click)="filterbyProperty('dmg')">Par Dégats</button></li>
+    <li><button (click)="filterbyProperty('hp')">Par Points de Vie</button></li>
+  </ul>
+</div>
 <ul class="weapons">
   <li *ngFor="let weapon of weapons">
     <a routerLink="/detailWeapon/{{weapon.id}}">

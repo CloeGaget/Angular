@@ -21,4 +21,11 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
   }
+
+  filterbyName() {
+    this.heroes.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  filterbyProperty(property: string) {
+    this.heroes.sort((a, b) => { return b[property] - a[property] });
+  }
 }

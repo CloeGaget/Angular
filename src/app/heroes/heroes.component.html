@@ -1,4 +1,14 @@
 <h2>Nos développeurs : </h2>
+<div class="filters">
+  <p> Filtrer par :</p>
+  <ul>
+    <li><button (click)="filterbyName()">Par nom</button></li>
+    <li><button (click)="filterbyProperty('attack')">Par Attaque</button></li>
+    <li><button (click)="filterbyProperty('dodge')">Par Esquive</button></li>
+    <li><button (click)="filterbyProperty('dmg')">Par Dégats</button></li>
+    <li><button (click)="filterbyProperty('hp')">Par Points de Vie</button></li>
+  </ul>
+</div>
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
